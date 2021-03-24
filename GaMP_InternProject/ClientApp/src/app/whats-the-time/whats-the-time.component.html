@@ -1,0 +1,9 @@
+<h1 id="tableLabel">Whats The Time</h1>
+
+<p *ngIf="!forecasts"><em>Loading...</em></p>
+
+<div *ngIf="forecasts">
+    <h3 *ngFor="let forecast of forecasts">
+      {{ forecast.time }}
+    </h3>
+</div>
