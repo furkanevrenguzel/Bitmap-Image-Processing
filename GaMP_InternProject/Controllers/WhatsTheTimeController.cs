@@ -3,12 +3,15 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace GaMP_InternProject.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class WhatsTheTimeController : ControllerBase
     {
         public static string WhatsTime(string bitmap) //Function
@@ -33,18 +36,27 @@ namespace GaMP_InternProject.Controllers
             //We convert the binary number array we have obtained to decimal, search the list named binary and print the index number after it is found.
         }
 
-        [HttpGet] //Calling the value from the function to be printed on the screen to be returned with HttpGet.
-        public IEnumerable<WhatsTheTime> Get()
-        {
-            /*
-                "111 0 010 000 111 0 111" +
-                "101 0 110 010 001 0 100" +
-                "101 0 010 000 111 0 111" +
-                "101 0 010 010 001 0 001" +
-                "111 0 111 000 111 0 111")
-            */
-            yield return new WhatsTheTime { Time = (string)WhatsTime("1110010000111011110101100100010100101001000011101111010010010001000111101110001110111") }; 
-            //The 0-1 equivalents of the pixels obtained from the bitmap are sent to the function. The resulting result is printed on the screen.
+        [HttpGet("x")]
+        public IEnumerable<WhatsTheTime> Get(string bins) //I'm pulling the value entered in the textbox.
+        { 
+            yield return new WhatsTheTime 
+            {
+
+                Time = (string)WhatsTime(bins) //We send the value to the function and throw the returned result into the Time variable.
+            };
+            
         }
+          /*
+              010 0 111 000 111 0 111     18:59
+              110 0 101 010 100 0 101 
+              010 0 111 000 111 0 111
+              010 0 101 010 001 0 001 
+              111 0 111 000 111 0 001
+         
+             "0100111000111011111001010101000101010011100011101110100101010001000111101110001110001"
+       
+            The 0-1 equivalents of the pixels obtained from the bitmap are sent to the function. The resulting result is printed on the screen.
+        */
+
     }
 }

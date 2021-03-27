@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-whats-the-time',
@@ -7,12 +8,25 @@ import { HttpClient } from '@angular/common/http';
 })
 export class WhatsTheTimeComponent {
   public forecasts: WhatsTheTime[];
+  public binaryString = null;
+  private httpClient: HttpClient;
+  private baseUrl: string;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) { //here we set up component and baseurl
-    http.get<WhatsTheTime[]>(baseUrl + 'whatsthetime').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.httpClient = http;
+    this.baseUrl = baseUrl;
   }
+
+  public process() {
+    this
+      .httpClient
+      .get<WhatsTheTime[]>(this.baseUrl + 'api/WhatsTheTime/x?bins=' + this.binaryString)
+      .subscribe(httpResult => {
+        this.forecasts = httpResult;
+        console.log(httpResult)
+      })
+
+  }  
 }
 
 interface WhatsTheTime {

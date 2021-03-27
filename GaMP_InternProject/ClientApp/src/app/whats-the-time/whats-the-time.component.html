@@ -1,9 +1,14 @@
 <h1 id="tableLabel">Whats The Time</h1>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+<p>Enter the Binary String</p>
+<input type="text" [(ngModel)]="binaryString" /> <!--Binary string textbox-->
+<button class="btn btn-primary" (click)="process(0)">Show</button> <!--I sent the value in the textbox to componente.-->
+
 
 <div *ngIf="forecasts">
-    <h3 *ngFor="let forecast of forecasts">
-      {{ forecast.time }}
-    </h3>
+ <!--I'm checking to see if the contractor works. The following code block is executed when it runs.-->
+  <h3 *ngFor="let forecast of forecasts">
+    <!--Values returned from the forecast.-->
+    {{ forecast.time }}
+  </h3>
 </div>
