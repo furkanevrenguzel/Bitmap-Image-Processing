@@ -9,3 +9,6 @@ Task 2: Binary string must be retrieved from the user in the frontend section, n
 
 Project Output
 
+![first_ss](https://user-images.githubusercontent.com/69848948/112731547-0f7a7400-8f49-11eb-8c1a-c142cf48b556.PNG)
+
+![second_ss](https://user-images.githubusercontent.com/69848948/112731556-1ef9bd00-8f49-11eb-8b28-8992fbbb6892.PNG)
